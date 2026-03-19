@@ -1,6 +1,6 @@
 # WorldDynamicPOP
 
-A two-stage pipeline for generating and spatially downscaling dynamic (time-varying) population grids, combining AI-generated trajectory data with building morphology and land-use information.
+A two-stage pipeline for generating and spatially downscaling dynamic (time-varying) population grids, combining mobile phone trajectory data with building morphology and land-use information.
 
 ## Overview
 
@@ -12,9 +12,10 @@ Accurate, high-resolution dynamic population data is essential for urban plannin
 
 ## Project Structure
 
-```
+```text
 WorldDynamicPOP/Scripts/
 ├── Step1-Dynamic_Population/
+│   ├── grid_to_tif.py                     # Create GeoTIFF grid reference from grid.json + npy shape
 │   ├── visit_time_extract.py              # Extract visit matrix [48 × n_grids] from trajectories
 │   └── generate_dynamic_pop.py            # Power-law model fitting & dynamic population generation
 │
@@ -32,29 +33,32 @@ WorldDynamicPOP/Scripts/
 
 ## Usage
 
+![Pipeline overview](../assets/e__data_download_Overture_WorldDynamicPOP_dynamic_pop.png)
+
 The pipeline runs in order:
 
 ```bash
 pip install -r requirements.txt
 
 # Step 1: Dynamic Population Generation
-python Step1-Dynamic_Population/visit_time_extract.py
-python Step1-Dynamic_Population/generate_dynamic_pop.py
+python Step1-Dynamic_Population/grid_to_tif.py --grid_json_dir <grid_json_dir> --npy_dir <npy_dir> --output_dir <grid_tif_dir>
+python Step1-Dynamic_Population/visit_time_extract.py --traj_dir <traj_npz_dir> --grid_dir <grid_json_dir> --output_dir <visit_out_dir>
+python Step1-Dynamic_Population/generate_dynamic_pop.py --visit_dir <visit_out_dir> --pop_dir <pop_npy_dir> --output_dir <dynamic_pop_out_dir> --params_dir <params_out_dir>
 
 # Step 2: Population Downscaling
-python Step2-Population_Downscaling/Land_cover_retrieval_and_processing.py
-python Step2-Population_Downscaling/Building_retrieval_and_processing.py
-python Step2-Population_Downscaling/Building_add_height.py
-python Step2-Population_Downscaling/Dynamic_population_downscaling.py
+python Step2-Population_Downscaling/Land_cover_retrieval_and_processing.py --grid_dir <grid_tif_dir> --parquet_dir <landuse_parquet_dir> --extracted_dir <landuse_extracted_dir> --classified_dir <landuse_classified_dir>
+python Step2-Population_Downscaling/Building_retrieval_and_processing.py --grid_dir <grid_tif_dir> --building_parquet_dir <buildings_parquet_dir> --places_parquet_dir <places_parquet_dir> --landuse_dir <landuse_classified_dir> --extracted_dir <bld_extracted_dir> --poi_linked_dir <bld_poi_dir> --classified_dir <bld_classified_dir>
+python Step2-Population_Downscaling/Building_add_height.py --grid_file <world_grid_shp> --height_dir <3dglobfp_zip_dir> --building_dir <bld_classified_dir> --output_dir <bld_final_dir>
+python Step2-Population_Downscaling/Dynamic_population_downscaling.py --pop_dir <dynamic_pop_1km_tif_dir> --building_dir <bld_final_dir> --landuse_dir <landuse_classified_dir> --output_dir <dynamic_pop_100m_out_dir> --ehp_weights <ehp_weights_csv_optional>
 ```
 
 ## Data Sources
 
 | Dataset | Purpose | Link |
-|---------|---------|------|
-| **WorldMove** | Synthetic mobility trajectories for 1 600+ cities | https://fi.ee.tsinghua.edu.cn/worldmove/ |
-| **Overture Maps** | Building footprints, POIs, and land-use data | https://overturemaps.org/ |
-| **3D-GloBFP** | Global building height data | https://zenodo.org/records/15459025 |
+| ------- | ------- | ---- |
+| **WorldMove** | Synthetic mobility trajectories for 1 600+ cities | `https://fi.ee.tsinghua.edu.cn/worldmove/` |
+| **Overture Maps** | Building footprints, POIs, and land-use data | `https://overturemaps.org/` |
+| **3D-GloBFP** | Global building height data | `https://zenodo.org/records/15459025` |
 
 ## Methodology
 
@@ -94,5 +98,3 @@ If you use this code in your research, please cite:
 ## License
 
 Apache 2.0.
-
-
