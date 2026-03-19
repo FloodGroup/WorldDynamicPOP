@@ -33,7 +33,7 @@ WorldDynamicPOP/Scripts/
 
 ## Usage
 
-![Pipeline overview](../assets/e__data_download_Overture_WorldDynamicPOP_dynamic_pop.png)
+![Pipeline overview](<img width="11033" height="9425" alt="dynamic_pop" src="https://github.com/user-attachments/assets/8238431d-5035-482d-a1bf-4fcc032cf31a"/>)
 
 The pipeline runs in order:
 
