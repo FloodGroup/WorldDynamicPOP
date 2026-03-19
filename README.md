@@ -33,7 +33,7 @@ WorldDynamicPOP/Scripts/
 
 ## Usage
 
-![Pipeline overview](<img width="11033" height="9425" alt="dynamic_pop" src="https://github.com/user-attachments/assets/8238431d-5035-482d-a1bf-4fcc032cf31a"/>)
+![Pipeline overview](<https://github.com/SKL-CRCC/WorldDynamicPOP/blob/main/images/dynamic_pop.png>)
 
 The pipeline runs in order:
 
