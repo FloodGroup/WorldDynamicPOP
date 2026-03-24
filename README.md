@@ -6,7 +6,7 @@ A two-stage pipeline for generating and spatially downscaling dynamic (time-vary
 
 Accurate, high-resolution dynamic population data is essential for urban planning, disaster response, and transportation analysis. **WorldDynamicPOP** addresses this need through a two-stage approach:
 
-1. **Dynamic Population Generation** — Estimates hourly population distribution at 1 km resolution by fitting a power-law model between visit density and census population, following the methodology of Deville et al. (2014) and Liu et al. (2018).
+1. **Dynamic Population Generation** — Estimates hourly population distribution at 1 km resolution by fitting a power-law model between visit density in midnight and census population, following the methodology of Deville et al. (2014) and Liu et al. (2018).
 
 2. **Spatial Downscaling** — Refines the 1 km estimates to 100 m resolution by distributing population according to Effective Housing Population (EHP) weights derived from building footprints, floor counts, and land-use categories.
 
