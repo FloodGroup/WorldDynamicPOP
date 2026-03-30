@@ -13,7 +13,7 @@ Accurate, high-resolution dynamic population data is essential for urban plannin
 ## Project Structure
 
 ```text
-WorldDynamicPOP/
+WorldDynamicPOP/scripts
 ├── Step1-Dynamic_Population/
 │   ├── grid_to_tif.py                     # Create GeoTIFF grid reference from grid.json + npy shape
 │   ├── visit_time_extract.py              # Extract visit matrix [48 × n_grids] from trajectories
