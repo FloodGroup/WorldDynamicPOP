@@ -6,7 +6,7 @@ A two-stage pipeline for generating and spatially downscaling dynamic (time-vary
 
 Accurate, high-resolution dynamic population data is essential for urban planning, disaster response, and transportation analysis. **WorldDynamicPOP** addresses this need through a two-stage approach:
 
-1. **Dynamic Population Generation** — Estimates hourly population distribution at 1 km resolution by fitting a power-law model between visit density in midnight and census population, following the methodology of Deville et al. (2014) and Liu et al. (2018).
+1. **Dynamic Population Generation** — Estimates hourly population distribution at 1 km resolution by fitting a power-law model between visit density in midnight and census population, following the methodology of Deville et al. (2014) and Liu et al. (2018) (see [References](#references)).
 
 2. **Spatial Downscaling** — Refines the 1 km estimates to 100 m resolution by distributing population according to Effective Housing Population (EHP) weights derived from building footprints, floor counts, and land-use categories.
 
@@ -82,6 +82,16 @@ where $W_{time}$ is the hourly time-use weight by land-use category, $W_{indoor}
 
 ---
 
+## References
+
+Papers cited for the dynamic population methodology ([Overview](#overview), [Stage 1](#stage-1--dynamic-population-estimation)):
+
+1. Deville, P., Linard, C., Martin, S., Gilbert, M., Stevens, F. R., Gaughan, A. E., Blondel, V. D., & Tatem, A. J. (2014). Dynamic population mapping using mobile phone data. *Proceedings of the National Academy of Sciences*, *111*(45), 15888–15893. https://doi.org/10.1073/pnas.1408439111
+
+2. Liu, Z., Ma, T., Du, Y., & Pei, T. (2018). Mapping hourly dynamics of urban population using trajectories reconstructed from mobile phone records. *Transactions in GIS*, *22*(2), 494–513. https://doi.org/10.1111/tgis.12323
+
+---
+
 ## Citation
 
 If you use this code in your research, please cite:
@@ -97,4 +107,4 @@ If you use this code in your research, please cite:
 
 ## License
 
-Apache 2.0.
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
