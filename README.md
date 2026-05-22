@@ -92,19 +92,6 @@ Papers cited for the dynamic population methodology ([Overview](#overview), [Sta
 
 ---
 
-## Citation
-
-If you use this code in your research, please cite:
-
-```bibtex
-@software{WorldDynamicPOP,
-  title  = {WorldDynamicPOP},
-  author = {Zhiyong LONG, Ruiyi YANG, Huanfeng DUAN},
-  year   = {2026},
-  url    = {https://github.com/SKL-CRCC/WorldDynamicPOP}
-}
-```
-
 ## License
 
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
