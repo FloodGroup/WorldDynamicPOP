@@ -50,7 +50,7 @@ class DownscalingConfig:
     fine_rasterize_factor: int = 10
     
     # Indoor population proportion factor M
-    season_factor_M: float = 0.9
+    season_factor_M: float = 0.85
     
     # Floor area coefficients (alpha)
     alpha_residential: float = 0.95
@@ -421,8 +421,8 @@ def main():
     parser.add_argument('--output_dir', type=str, required=True,
                         help="Output directory for 100m population TIFs")
 
-    parser.add_argument('--season_factor_M', type=float, default=0.9,
-                        help="Indoor population proportion factor M (default: 0.9)")
+    parser.add_argument('--season_factor_M', type=float, default=0.85,
+                        help="Indoor population proportion factor M (default: 0.85)")
     parser.add_argument('--alpha_residential', type=float, default=0.95,
                         help="Floor area coefficient for residential (default: 0.95)")
     parser.add_argument('--alpha_ci', type=float, default=0.91,
